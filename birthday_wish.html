@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Korangu</title>
+  <style>
+    :root {
+      --bg1: #1a001f;
+      --bg2: #3b0a45;
+      --accent: #ff5ca8;
+      --accent2: #ff8ec7;
+      --text: #fff6fb;
+      --card: rgba(255, 255, 255, 0.14);
+      --stroke: rgba(255, 255, 255, 0.26);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: var(--size);
+      color: rgba(255, 120, 190, 0.75);
+      left: var(--left);
+      animation: rise var(--dur) linear infinite;
+      animation-delay: var(--delay);
+      filter: drop-shadow(0 0 6px rgba(255, 135, 195, 0.55));
+      transform: rotate(var(--rot));
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-50vh) translateX(var(--drift)) rotate(120deg) scale(1);
+      }
+      100% {
+        transform: translateY(-115vh) translateX(calc(var(--drift) * 1.8)) rotate(260deg) scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      width: min(92vw, 780px);
+      padding: 2.2rem;
+      text-align: center;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(8px);
+      z-index: 2;
+      animation: glow 2.5s ease-in-out infinite alternate;
+      box-shadow: 0 12px 38px rgba(0, 0, 0, 0.35);
+    }
+
+    .photo-wrap {
+      margin: 0.2rem auto 1.1rem;
+      width: min(260px, 68vw);
+      aspect-ratio: 3 / 4;
+      border-radius: 18px;
+      padding: 6px;
+      background: linear-gradient(130deg, #ff69b4, #ff9ed3, #ffd2ea);
+      box-shadow: 0 10px 26px rgba(255, 105, 180, 0.35);
+      animation: floatCard 3.2s ease-in-out infinite;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 10px 30px rgba(255, 77, 166, 0.2);
+      }
+      to {
+        box-shadow: 0 14px 42px rgba(255, 77, 166, 0.5);
+      }
+    }
+
+    .title {
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 139, 200, 0.7);
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      opacity: 0.95;
+      margin-bottom: 1.2rem;
+    }
+
+    .message {
+      line-height: 1.75;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      letter-spacing: 0.2px;
+      color: #fff8fc;
+    }
+
+    .highlight {
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    .big-heart {
+      margin-top: 1rem;
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      color: var(--accent);
+      animation: beat 1s ease-in-out infinite;
+      display: inline-block;
+      text-shadow: 0 0 14px rgba(255, 91, 171, 0.75);
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    .footer {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .signature {
+      margin-top: 0.45rem;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      letter-spacing: 0.32em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffd5ea;
+      text-shadow: 0 0 10px rgba(255, 120, 190, 0.55);
+    }
+
+    .duo-line {
+      margin-top: 0.95rem;
+      font-size: clamp(0.95rem, 2vw, 1.08rem);
+      font-weight: 700;
+      color: #ffe9f5;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      display: inline-block;
+      box-shadow: 0 6px 16px rgba(255, 111, 181, 0.24);
+    }
+
+    .monkey-corner {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 3;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      animation: wiggle 1.8s ease-in-out infinite;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+      user-select: none;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    .monkey-hint {
+      position: fixed;
+      top: 18px;
+      right: 58px;
+      z-index: 3;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffe8f4;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      padding: 0.28rem 0.58rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      animation: pulseHint 1.3s ease-in-out infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      background: rgba(15, 0, 20, 0.82);
+      backdrop-filter: blur(6px);
+    }
+
+    .lock-box {
+      width: min(92vw, 360px);
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 18px;
+      padding: 1.1rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .lock-title {
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+      color: #ffe8f5;
+    }
+
+    .lock-input {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.25);
+      color: #fff;
+      padding: 0.55rem 0.65rem;
+      outline: none;
+    }
+
+    .lock-btn {
+      margin-top: 0.7rem;
+      border: none;
+      border-radius: 10px;
+      padding: 0.55rem 0.9rem;
+      background: linear-gradient(120deg, #ff5ca8, #ff8ec7);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lock-error {
+      margin-top: 0.55rem;
+      min-height: 1.1em;
+      color: #ffd1d1;
+      font-size: 0.9rem;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(-10deg) scale(1.08); }
+      75% { transform: rotate(10deg) scale(1.08); }
+    }
+
+    @keyframes pulseHint {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-box">
+      <div class="lock-title">Enter Password to open this wish</div>
+      <input class="lock-input" id="pwdInput" type="password" placeholder="Enter password" />
+      <button class="lock-btn" id="unlockBtn" type="button">Open Wish</button>
+      <div class="lock-error" id="lockError"></div>
+    </div>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+  <div class="monkey-hint">Click here</div>
+  <div class="monkey-corner" id="monkeyBtn" title="Click me">🐵</div>
+
+  <main class="card">
+    <h1 class="title">Happy Birthday, Jathi!</h1>
+    <div class="photo-wrap">
+      <img src="jathi_photo.png" alt="Jathi photo" />
+    </div>
+    <p class="subtitle">To my cutest <span class="highlight">Korangu</span> and my best friend</p>
+    <p class="message">
+      Wishing you a day full of smiles, laughter, and all the happiness you deserve.
+      <span class="highlight">This wish is by Gowri.</span>
+      You are my best friend, my special person, and always my <span class="highlight">Korangu</span>.
+      May your year be filled with love, success, and beautiful memories.
+      Stay happy always, because you mean a lot to me.
+      Korangu, give me your smile always.
+      <span class="highlight">Give me your insta.</span>
+      You are cheater Jathi, I never forgot.
+    </p>
+    <div class="big-heart">❤</div>
+    <p class="footer">Made with lots of love for Jathi</p>
+    <p class="duo-line">Gowri ♡ Jathi - One Soul, Two Smiles</p>
+    <p class="signature">B Y&nbsp;&nbsp;G O W R I</p>
+  </main>
+
+  <script>
+    const heartsContainer = document.getElementById("hearts");
+    const monkeyBtn = document.getElementById("monkeyBtn");
+    const lockScreen = document.getElementById("lockScreen");
+    const pwdInput = document.getElementById("pwdInput");
+    const unlockBtn = document.getElementById("unlockBtn");
+    const lockError = document.getElementById("lockError");
+    const totalHearts = 90;
+    const sitePassword = "jathi";
+
+    function createHeart() {
+      const heart = document.createElement("span");
+      heart.className = "heart";
+      heart.textContent = "❤";
+
+      const size = (Math.random() * 22 + 12).toFixed(1) + "px";
+      const left = (Math.random() * 100).toFixed(2) + "vw";
+      const dur = (Math.random() * 6 + 5).toFixed(2) + "s";
+      const delay = (Math.random() * 7).toFixed(2) + "s";
+      const drift = ((Math.random() * 80) - 40).toFixed(0) + "px";
+      const rot = ((Math.random() * 80) - 40).toFixed(0) + "deg";
+
+      heart.style.setProperty("--size", size);
+      heart.style.setProperty("--left", left);
+      heart.style.setProperty("--dur", dur);
+      heart.style.setProperty("--delay", delay);
+      heart.style.setProperty("--drift", drift);
+      heart.style.setProperty("--rot", rot);
+
+      heartsContainer.appendChild(heart);
+    }
+
+    for (let i = 0; i < totalHearts; i++) {
+      createHeart();
+    }
+
+    const funnyLines = [
+      "Korangu says: Cake first, drama later!",
+      "Korangu, give me LOVE 💖",
+      "Warning: Too much cuteness detected in this corner.",
+      "Monkey message: Jathi is officially the birthday queen!"
+    ];
+
+    monkeyBtn.addEventListener("click", () => {
+      const randomLine = funnyLines[Math.floor(Math.random() * funnyLines.length)];
+      alert(randomLine);
+    });
+
+    function tryUnlock() {
+      if (pwdInput.value.trim().toLowerCase() === sitePassword) {
+        lockScreen.style.display = "none";
+        lockError.textContent = "";
+      } else {
+        lockError.textContent = "Wrong password. Try again.";
+      }
+    }
+
+    unlockBtn.addEventListener("click", tryUnlock);
+    pwdInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryUnlock();
+    });
+  </script>
+</body>
+</html>
